@@ -1,11 +1,10 @@
 import React from "react";
 import "./App.css";
+import styled from "styled-components";
 
 const Todo = () => {
   const [todoTitle, setTodoTitle] = React.useState("");
   const [todos, setTodos] = React.useState([]);
-
-  // useRef??
 
   const handleAddTodo = () => {
     if (!todoTitle) return;
@@ -32,11 +31,9 @@ const Todo = () => {
   };
 
   return (
-    <div style={{ width: "500px" }}>
-      <h1>My Todo List</h1>
-      <div
-        style={{ display: "flex", borderColor: "gray", borderStyle: "solid" }}
-      >
+    <div>
+      <h1>Todo List</h1>
+      <div className="todobox">
         <div>
           <h3>Title</h3>
           <input
@@ -52,10 +49,7 @@ const Todo = () => {
       {todos
         .filter((todo) => !todo.isDone)
         .map((todo) => (
-          <div
-            key={todo.id}
-            style={{ borderColor: "blue", borderStyle: "solid" }}
-          >
+          <div className="workingbox" key={todo.id}>
             <h5>{todo.title}</h5>
             <button onClick={() => handleToggleTodo(todo.id)}>완료</button>
             <button onClick={() => handleRemoveTodo(todo.id)}>삭제하기</button>
